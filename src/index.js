@@ -1,11 +1,25 @@
-
+import app from "./app.js";
 import dotenv from "dotenv";
 import connectDB from "./db/index.js";
 
 dotenv.config({path:'./.env'}); // load .env first!
 
+const PORT=process.env.PORT
 
-connectDB()
+connectDB().then(()=>{
+  app.listen(PORT,()=>{
+    console.log(`server is running on ${PORT}`)
+  })
+}).catch((error)=>{
+  console.log("Connection failed of mongo",error.message)
+})
+
+
+
+
+
+
+
 
 
 
@@ -16,9 +30,25 @@ connectDB()
 
 
 /*
+// connectimg database ont data base
+
+2- type
+import dotenv from "dotenv";
+import connectDB from "./db/index.js";
+
+dotenv.config({path:'./.env'}); // load .env first!
+
+
+connectDB();
+
+
+
+
+
+/*
 
 // to create everythin in same file
-
+1- type 
 
 import express from "express";
 import mongoose from "mongoose";
